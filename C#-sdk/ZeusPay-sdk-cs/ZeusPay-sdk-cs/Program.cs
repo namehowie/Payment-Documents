@@ -39,6 +39,9 @@ namespace ZeusPay_sdk_cs
                 }
             }
         }
+        /// <summary>
+        /// Zeus支付登录测试，需要输入Zeus支付的接口地址和商户站点的用户标识
+        /// </summary>
         static void ZeusPayLogin()
         {
             var result = PayHelper.ZeusPayLogin("http://192.168.1.240/api/public/authconnect", "173960116574380032");
@@ -50,10 +53,13 @@ namespace ZeusPay_sdk_cs
             else
                 Console.WriteLine(JsonConvert.SerializeObject(result));
         }
+        /// <summary>
+        /// Zeus支付测试，需要输入Zeus支付的接口地址和及支付参数
+        /// </summary>
         static void ZeusPay()
         {
             var result = PayHelper.ZeusPay("http://192.168.1.240/api/public/payrequest", new Models.PayRequest {
-                identifier = "173960116574380032",
+                identifier = "173960116574380032", //商户站点的用户标识
                 callback = "http://extsite.com/pay/otc/callbac",
                 cur = "BTC",
                 amt = 100.32f,
