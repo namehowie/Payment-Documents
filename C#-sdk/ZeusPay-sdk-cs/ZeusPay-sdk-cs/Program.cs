@@ -14,7 +14,7 @@ namespace ZeusPay_sdk_cs
             while (true)
             {
                 Console.Clear();
-                Console.WriteLine("请选择接口()");
+                Console.WriteLine("请选择接口！");
                 Console.WriteLine("1、登录接口");
                 Console.WriteLine("2、支付接口");
                 Console.WriteLine("");
