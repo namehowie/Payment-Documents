@@ -18,7 +18,7 @@ namespace ZeusPay_sdk_cs
         /// <param name="url">接口Url地址</param>
         /// <param name="identifier">商户站点的用户标识</param>
         /// <returns>接口返回对象</returns>
-        public static LoginResult ZeusPayLogin(string url, string identifier)
+        public static LoginResult ZeusPayLogin(string url, string identifier,string nickname)
         {
             if (string.IsNullOrEmpty(ConfigurationManager.AppSettings["code"]) || string.IsNullOrEmpty(ConfigurationManager.AppSettings["appkey"]) || string.IsNullOrEmpty(ConfigurationManager.AppSettings["signkey"]))
                 throw new Exception();
@@ -26,7 +26,8 @@ namespace ZeusPay_sdk_cs
             {
                 code = ConfigurationManager.AppSettings["code"],
                 appkey = ConfigurationManager.AppSettings["appkey"],
-                identifier = identifier
+                identifier = identifier,
+                nickname = nickname
             };
             var str = SignUtil.GetPropertyValueWithOrder<LoginRequest>(request);
             str += "&key=" + ConfigurationManager.AppSettings["signkey"];
@@ -47,24 +48,13 @@ namespace ZeusPay_sdk_cs
         {
             if (string.IsNullOrEmpty(ConfigurationManager.AppSettings["code"]) || string.IsNullOrEmpty(ConfigurationManager.AppSettings["appkey"]) || string.IsNullOrEmpty(ConfigurationManager.AppSettings["signkey"]) || string.IsNullOrEmpty(ConfigurationManager.AppSettings["payee"]))
                 throw new Exception();
-            var request = new PayRequest
-            {
-                code = ConfigurationManager.AppSettings["code"], //
-                appkey = ConfigurationManager.AppSettings["appkey"],
-                identifier = req.identifier,
-                cur = req.cur,
-                transaction = req.transaction,
-                amt = req.amt,
-                callback = req.callback,
-                desc = req.desc,
-                expiry = req.expiry,
-                payee = long.Parse(ConfigurationManager.AppSettings["payee"]),
-                token = req.token
-            };
-            var str = SignUtil.GetPropertyValueWithOrder<LoginRequest>(request);
+            req.code = ConfigurationManager.AppSettings["code"];
+            req.appkey = ConfigurationManager.AppSettings["appkey"];
+            req.payee = long.Parse(ConfigurationManager.AppSettings["payee"]);
+            var str = SignUtil.GetPropertyValueWithOrder<LoginRequest>(req);
             str += "&key=" + ConfigurationManager.AppSettings["signkey"];
-            request.sign = SignUtil.GetMD5(str);
-            var json = JsonConvert.SerializeObject(request);
+            req.sign = SignUtil.GetMD5(str);
+            var json = JsonConvert.SerializeObject(req);
             str = HttpUtil.Post(url, json);
 
             return str == null ? null : JsonConvert.DeserializeObject<LoginResult>(str);

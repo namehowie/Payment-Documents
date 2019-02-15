@@ -17,6 +17,10 @@ namespace ZeusPay_sdk_cs.Models
         /// </summary>
         public string identifier { set; get; }
         /// <summary>
+        /// 用户昵称，字符串
+        /// </summary>
+        public string nickname { set; get; }
+        /// <summary>
         /// 应用key，字符串，由OTC平台在商户认证后提供
         /// </summary>
         public string appkey { set; get; }
