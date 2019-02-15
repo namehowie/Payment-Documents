@@ -10,12 +10,11 @@ namespace ZeusPay_sdk_cs.Utils
 {
     public class SignUtil
     {
-        public static string MD5Encrypt(string strText)
-        {
-            MD5 md5 = new MD5CryptoServiceProvider();
-            byte[] result = md5.ComputeHash(System.Text.Encoding.Default.GetBytes(strText));
-            return System.Text.Encoding.Default.GetString(result);
-        }
+        /// <summary>
+        /// 获取MD5算法的结果
+        /// </summary>
+        /// <param name="myString">字符串</param>
+        /// <returns>MD5摘要</returns>
         public static string GetMD5(string myString)
         {
             MD5 md5 = new MD5CryptoServiceProvider();

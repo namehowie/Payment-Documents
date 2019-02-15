@@ -55,7 +55,6 @@ namespace ZeusPay_sdk_cs
                 cur = req.cur,
                 transaction = req.transaction,
                 amt = req.amt,
-                biz_identifier = req.biz_identifier,
                 callback = req.callback,
                 desc = req.desc,
                 expiry = req.expiry,

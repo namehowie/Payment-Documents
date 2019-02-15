@@ -21,10 +21,6 @@ namespace ZeusPay_sdk_cs.Models
         /// </summary>
         public string callback { set; get; }
         /// <summary>
-        /// 
-        /// </summary>
-        public string biz_identifier { set; get; }
-        /// <summary>
         /// 商户站点为此次支付请求生成的交易标识，64位以内字符串
         /// </summary>
         public long transaction { set; get; }
@@ -37,7 +33,7 @@ namespace ZeusPay_sdk_cs.Models
         /// </summary>
         public long payee { set; get; }
         /// <summary>
-        /// 
+        /// 截止有效时间
         /// </summary>
         public string expiry { set; get; }
         /// <summary>
