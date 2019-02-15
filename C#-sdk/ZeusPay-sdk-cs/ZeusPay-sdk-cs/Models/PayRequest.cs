@@ -33,7 +33,7 @@ namespace ZeusPay_sdk_cs.Models
         /// </summary>
         public long payee { set; get; }
         /// <summary>
-        /// 截止有效时间
+        /// 截止有效时间，从申请成功后多少毫秒
         /// </summary>
         public string expiry { set; get; }
         /// <summary>
